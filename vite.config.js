@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
+                'resources/scss/app.scss',
                 'resources/js/app.js',
                 'resources/js/tab.js'
             ],
@@ -17,8 +17,5 @@ export default defineConfig({
         alias: {
             '~font' : path.resolve(__dirname,'resources/fonts')
         }
-    },
-    input: [
-        'resources/scss/app.scss'
-    ],
+    }
 });
