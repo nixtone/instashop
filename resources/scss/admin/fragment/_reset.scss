@@ -1,0 +1,21 @@
+pre {
+    background-color: #ececec;
+    padding: 10px;
+    white-space: pre-wrap;
+    margin: 10px 0;
+}
+h2 {
+    padding-bottom: 5px;
+    border-bottom: 2px solid;
+    margin: 0 0 20px;
+    .name {
+        color: #0074e8;
+        font-weight: normal;
+        font-size: 0.8rem;
+        display: block;
+        font-style: italic;
+    }
+}
+main a {
+    color: #0074e8;
+}
