@@ -19,7 +19,7 @@
         <header>
             <div class="row c1">
                 <a href="{{ route('page.index') }}" id="logo">
-                    <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="" class="bimg">
+                    <img src="{{ asset('/images/logo.png') }}" alt="" class="bimg">
                 </a>
                 <nav>
                     <a href="#" class="link">Оплата и доставка</a>
