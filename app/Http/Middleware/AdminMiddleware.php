@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check() || Auth::user()->group->id != 1) {
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.login');
         }
         return $next($request);
     }

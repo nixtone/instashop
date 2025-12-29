@@ -33,7 +33,7 @@
                 </div>
                 <div class="field_area">
                     <label for="preview_field">Превью</label>
-                    <input type="file" name="preview[]" id="preview_field" class="field"  accept="image/*" multiple>
+                    <input type="file" name="preview[]" id="preview_field" class="field" @accept('image') multiple>
                     @if(isset($category) AND $category->getFiles('preview')->count())
                         <div class="preview-list" style="">
                             @foreach($category->getFiles('preview') as $preview)

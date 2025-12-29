@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
-    public function index() {
-        if(Auth::check()) return view('admin.index');
+    public function login() {
         return view('admin.login');
+    }
+
+    public function index() {
+        return view('admin.index');
     }
 
 
