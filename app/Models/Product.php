@@ -17,18 +17,18 @@ class Product extends Model
     use HasSlug;
     use SoftDeletes;
 
-
-
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
 
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function options() {
+    public function options()
+    {
         return $this->belongsToMany(Option::class, 'option_products')->withPivot('value');
     }
-
 }

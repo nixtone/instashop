@@ -9,8 +9,8 @@ use Illuminate\View\Component;
 
 class link extends Component
 {
-
     public $route;
+
     public $active;
 
     /**
@@ -20,7 +20,7 @@ class link extends Component
     {
         $this->route = $route;
         // TODO: Доработать условия для вложенных адресов, не только для прямых
-        $this->active = !empty($this->route) && str_starts_with(Route::currentRouteName(), $this->route) ? ' active' : '';
+        $this->active = ! empty($this->route) && str_starts_with(Route::currentRouteName(), $this->route) ? ' active' : '';
     }
 
     /**

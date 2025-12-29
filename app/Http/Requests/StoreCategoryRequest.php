@@ -22,18 +22,18 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => "required|string",
-            'slug' => "required|string",
-            'short_name' => "string|nullable",
-            'sort' => "integer|nullable",
-            'active' => "boolean",
-            'external_link' => "",
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'short_name' => 'string|nullable',
+            'sort' => 'integer|nullable',
+            'active' => 'boolean',
+            'external_link' => '',
             'parent_id' => 'nullable|exists:categories,id',
             // 'preview' => '',
-            'seo_title' => "string|nullable",
-            'seo_description' => "string|nullable",
-            'seo_keywords' => "string|nullable",
-            'description' => "string|nullable",
+            'seo_title' => 'string|nullable',
+            'seo_description' => 'string|nullable',
+            'seo_keywords' => 'string|nullable',
+            'description' => 'string|nullable',
         ];
     }
 }

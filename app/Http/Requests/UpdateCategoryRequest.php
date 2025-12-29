@@ -22,19 +22,19 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => "required|string",
-            'slug' => "required|string",
-            'short_name' => "string|nullable",
-            'sort' => "integer",
-            'active' => "boolean",
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'short_name' => 'string|nullable',
+            'sort' => 'integer',
+            'active' => 'boolean',
             'options' => 'array',
             'options.*' => 'integer|exists:options,id',
-            'external_link' => "",
+            'external_link' => '',
             'parent_id' => 'nullable|exists:categories,id',
-            'seo_title' => "string|nullable",
-            'seo_description' => "string|nullable",
-            'seo_keywords' => "string|nullable",
-            'description' => "string|nullable",
+            'seo_title' => 'string|nullable',
+            'seo_description' => 'string|nullable',
+            'seo_keywords' => 'string|nullable',
+            'description' => 'string|nullable',
         ];
     }
 }

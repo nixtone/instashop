@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Option;
 use App\Http\Requests\StoreOptionRequest;
 use App\Http\Requests\UpdateOptionRequest;
+use App\Models\Option;
 
 class OptionController extends Controller
 {

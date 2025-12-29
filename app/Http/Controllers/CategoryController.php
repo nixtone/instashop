@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
 use App\Models\Option;
 
 class CategoryController extends Controller
@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::where('parent_id', null)->withTrashed()->get();
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -25,6 +26,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $options = Option::all();
+
         return view('admin.category.create', compact('categories', 'options'));
     }
 
@@ -36,6 +38,7 @@ class CategoryController extends Controller
         $validated = $request->validated();
         $category = Category::create($validated);
         $category->options()->sync($request->input('options', []));
+
         // $category->uploadFile($validated); // TODO: Добавление превью
         return redirect()->route('admin.category.index');
     }
@@ -55,6 +58,7 @@ class CategoryController extends Controller
     {
         $categories = Category::where('id', '!=', $category->id)->get();
         $options = Option::all();
+
         return view('admin.category.edit', compact('category', 'categories', 'options'));
     }
 
@@ -66,6 +70,7 @@ class CategoryController extends Controller
         $validated = $request->validated();
         $category->update($validated);
         $category->options()->sync($request->input('options', []));
+
         // $category->uploadFile($validated); // TODO: Добавление превью
         return back();
     }
@@ -76,6 +81,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return redirect()->route('admin.category.index');
     }
 
@@ -83,13 +89,15 @@ class CategoryController extends Controller
     {
         $category->forceDelete();
         $category->deleteFile();
+
         return redirect()->route('admin.category.index');
     }
 
-
-    public function restore($id) {
+    public function restore($id)
+    {
         $category = Category::withTrashed()->find($id);
         $category->restore();
+
         return redirect()->route('admin.category.index');
     }
 }

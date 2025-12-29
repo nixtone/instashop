@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\OptionProduct;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class OptionProductSeeder extends Seeder
@@ -17,8 +16,8 @@ class OptionProductSeeder extends Seeder
             [
                 'option_id' => 1,
                 'product_id' => 1,
-                'value' => 'кварцевый'
-            ]
+                'value' => 'кварцевый',
+            ],
         ];
         foreach ($optionProducts as $optionProduct) {
             OptionProduct::create($optionProduct);

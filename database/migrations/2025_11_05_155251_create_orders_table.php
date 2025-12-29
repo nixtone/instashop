@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->text('comment')->nullable();
 
-            $table->enum('status', [1,2,3,4,5])->default(1);
+            $table->enum('status', [1, 2, 3, 4, 5])->default(1);
             $table->tinyInteger('pay_method')->default(1);
             $table->boolean('payed')->default(false);
 

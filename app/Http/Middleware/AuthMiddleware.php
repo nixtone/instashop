@@ -16,9 +16,10 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::check()) { // TODO:  AND Auth::user()->group->id != 1
+        if (! Auth::check()) { // TODO:  AND Auth::user()->group->id != 1
             return redirect()->route('admin.index');
         }
+
         return $next($request);
     }
 }

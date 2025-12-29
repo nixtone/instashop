@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             $formats = [
                 'image' => '.jpg, .jpeg, .png, .webp',
                 'document' => '.pdf, .doc, .docx',
-                'xls' => '.xls, .xlsx, .csv'
+                'xls' => '.xls, .xlsx, .csv',
             ];
             $result = [];
             foreach ($keys as $key) {
@@ -35,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
                     $result[] = $formats[$key];
                 }
             }
+
             return empty($result) ? '' : "<?php echo 'accept=\"".implode(', ', $result)."\"'; ?>";
         });
     }

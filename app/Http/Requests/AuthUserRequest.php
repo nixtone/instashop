@@ -29,11 +29,12 @@ class AuthUserRequest extends FormRequest
         ];
     }
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'login.required' => 'Требуется логин',
             'password.required' => 'Требуется пароль',
-            'password.min' => 'Пароль должен быть не менее {min} символов'
+            'password.min' => 'Пароль должен быть не менее {min} символов',
         ];
     }
 }

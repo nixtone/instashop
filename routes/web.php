@@ -9,11 +9,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
-
 use Illuminate\Support\Facades\Route;
-
-
-
 
 // Отдельные страницы
 Route::name('page.')->controller(PageController::class)->group(function () {
@@ -34,8 +30,6 @@ Route::prefix('product')->name('product.')->controller(ProductController::class)
 Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
     Route::get('/', 'index')->name('index');
 });
-
-
 
 // Админка
 Route::prefix('/k2/admin')->name('admin.')->group(function () {

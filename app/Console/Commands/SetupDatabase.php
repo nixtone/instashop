@@ -28,14 +28,12 @@ class SetupDatabase extends Command
     {
         \Log::info('SetupDatabase command started');
 
-
-
         $this->components->info('🎯 Laravel 12 Database Setup Wizard');
 
         // Проверяем существование .env файла
         $envPath = base_path('.env');
 
-        if (!File::exists($envPath)) {
+        if (! File::exists($envPath)) {
             $this->components->error('.env file not found!');
 
             if (File::exists(base_path('.env.example'))) {
@@ -43,6 +41,7 @@ class SetupDatabase extends Command
                 $this->components->info('✅ .env file created from .env.example');
             } else {
                 $this->components->error('❌ .env.example file not found!');
+
                 return;
             }
         }
@@ -91,7 +90,7 @@ class SetupDatabase extends Command
             if (preg_match($pattern, $envContent)) {
                 $envContent = preg_replace($pattern, $replacement, $envContent);
             } else {
-                $envContent .= PHP_EOL . $replacement;
+                $envContent .= PHP_EOL.$replacement;
             }
         }
 
@@ -115,7 +114,7 @@ class SetupDatabase extends Command
             \Illuminate\Support\Facades\DB::connection()->getPdo();
             $this->components->info('✅ Database connection successful!');
         } catch (\Exception $e) {
-            $this->components->error('❌ Database connection failed: ' . $e->getMessage());
+            $this->components->error('❌ Database connection failed: '.$e->getMessage());
             $this->components->warn('Please check your credentials and ensure database server is running.');
         }
     }

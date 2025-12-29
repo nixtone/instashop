@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\OptionCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class OptionCategorySeeder extends Seeder

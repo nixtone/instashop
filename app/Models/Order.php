@@ -13,33 +13,37 @@ class Order extends Model
     protected $guarded = false;
 
     public $statusNames = [
-        1 => "Принят",
-        2 => "Выполняется",
-        3 => "Готов",
-        4 => "Отказ",
-        5 => "Остановлен"
+        1 => 'Принят',
+        2 => 'Выполняется',
+        3 => 'Готов',
+        4 => 'Отказ',
+        5 => 'Остановлен',
     ];
 
     public $payMethodNames = [
-        1 => "Картой",
-        2 => "Кредит",
-        3 => "Наличными",
-        4 => "Наложный платеж"
+        1 => 'Картой',
+        2 => 'Кредит',
+        3 => 'Наличными',
+        4 => 'Наложный платеж',
     ];
 
-    public function getStatusNameAttribute() {
+    public function getStatusNameAttribute()
+    {
         return $this->statusNames[$this->status];
     }
 
-    public function getPayMethodNameAttribute() {
+    public function getPayMethodNameAttribute()
+    {
         return $this->payMethodNames[$this->pay_method];
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function products() {
+    public function products()
+    {
         return $this->belongsToMany(Product::class, 'order_products')
             ->withPivot('price', 'quantity')
             ->selectRaw('products.*, (order_products.quantity * order_products.price) as subtotal');
@@ -47,9 +51,8 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-        return $this->products->sum(function($product) {
+        return $this->products->sum(function ($product) {
             return $product->pivot->quantity * $product->pivot->price;
         });
     }
-
 }

@@ -10,8 +10,8 @@ class UserGroup extends Model
     /** @use HasFactory<\Database\Factories\UserGroupFactory> */
     use HasFactory;
 
-    public function users() {
+    public function users()
+    {
         return $this->hasMany(User::class);
     }
-
 }

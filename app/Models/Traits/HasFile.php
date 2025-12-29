@@ -6,44 +6,50 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
-# v.1
+// v.1
 trait HasFile
 {
-
     // php artisan storage:link
 
     public array $acceptedFileFormats = [
-        'image' => '.jpg, .jpeg, .png, .webp, .pdf'
+        'image' => '.jpg, .jpeg, .png, .webp, .pdf',
     ];
 
-    private function path(): string {
-        return strtolower(class_basename($this))."/".$this->id;
+    private function path(): string
+    {
+        return strtolower(class_basename($this)).'/'.$this->id;
     }
 
-    public function getFiles($folder = '') {
+    public function getFiles($folder = '')
+    {
         $arFiles = collect();
-        $storagePath = match(env('FILESYSTEM_DISK')) {
+        $storagePath = match (env('FILESYSTEM_DISK')) {
             'local' => '',
             'public' => '/storage/',
             's3' => env('AWS_URL').'/'.env('AWS_BUCKET').'/'
         };
-        foreach(Storage::files($this->path().'/'.$folder) as $file) {
+        foreach (Storage::files($this->path().'/'.$folder) as $file) {
             $arFiles->put(
                 basename($file),
                 $storagePath.$file
             );
         }
+
         return $arFiles;
     }
 
-    public function getFile($folder = '') {
+    public function getFile($folder = '')
+    {
         return $this->getFiles($folder)->first();
     }
 
-    public function uploadFile($validated) {
+    public function uploadFile($validated)
+    {
         $status = [];
         foreach ($validated as $fieldName => $file) {
-            if (!is_array($file)) $file = [$file];
+            if (! is_array($file)) {
+                $file = [$file];
+            }
             if ($file instanceof \Illuminate\Http\UploadedFile) {
                 unset($validated[$fieldName]);
                 foreach ($file as $singleFile) {
@@ -83,14 +89,17 @@ trait HasFile
                 }
             }
         }
+
         return [
             'validated' => $validated,
-            'status' => $status
+            'status' => $status,
         ];
     }
 
-    public function deleteFile($folder = '', $file = null) {
-        $path = $this->path()."/".$folder;
-        return $file === null ? Storage::deleteDirectory($path) : Storage::delete($path."/".$file) ;
+    public function deleteFile($folder = '', $file = null)
+    {
+        $path = $this->path().'/'.$folder;
+
+        return $file === null ? Storage::deleteDirectory($path) : Storage::delete($path.'/'.$file);
     }
 }

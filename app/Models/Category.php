@@ -19,7 +19,8 @@ class Category extends Model
 
     protected $guarded = false;
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
@@ -35,8 +36,8 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    public function options() {
+    public function options()
+    {
         return $this->belongsToMany(Option::class, 'option_categories');
     }
-
 }
